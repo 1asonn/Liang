@@ -13,7 +13,7 @@
         <div class="input-box">
             <el-input
                 type="textarea"
-                :rows="3"
+                :rows="4"
                 v-model="inputMessage"
                 @input.native="handleChange"
                 @keydown.native.enter="handleKeydown"
@@ -244,18 +244,16 @@
 
   .main{
     position: relative;
-    border: 1px solid red;
     height: 80vh;
     overflow-y: hidden;
   }
   
 
   .chat-box {
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     height: 80%;
-    overflow: scroll;
+    overflow-y: scroll;
     padding: 5% 5%;
     box-sizing: border-box;
   }
