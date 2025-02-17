@@ -1,0 +1,19 @@
+.common:
+  only:
+    - master
+  allow_failure: false
+
+# -------------------------------------------
+
+发布依赖:
+  extends: .common
+  variables:
+    DOC_DEPLOY_DIR: /projects/home/
+  script:
+    - echo "安装依赖..."
+    - pnpm install --reporter=append-only --loglevel=error --color=always
+    - echo "发布文档..."
+    - pnpm build
+    - rm -rf $DOC_DEPLOY_DIR
+    - mkdir -p $DOC_DEPLOY_DIR
+    - cp -r ./dist/* $DOC_DEPLOY_DIR

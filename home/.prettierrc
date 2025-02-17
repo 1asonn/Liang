@@ -1,0 +1,9 @@
+{
+  "plugins": ["prettier-plugin-glsl"],
+  "overrides": [
+    {
+      "files": ["*.glsl", "*.fs", "*.vs"],
+      "options": { "parser": "glsl-parser" }
+    }
+  ]
+}
