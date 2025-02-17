@@ -1,0 +1,111 @@
+.selectPayBox {
+    position: relative;
+    padding: 50px 32px 32px;
+
+    .close {
+        height: 22px;
+        width: 22px;
+        padding: 10px;
+        background: url("./img/close.png") no-repeat;
+        background-size: 100% auto;
+        background-position: center;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
+
+    .selectPay {
+        min-height: 400px;
+        width: 100%;
+    }
+
+    .selectPayTitle {
+        font-size: 26px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #000000;
+        text-align: center
+    }
+
+    .payPrice {
+        font-size: 40px;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: bold;
+        color: #000000;
+        text-align: center
+    }
+
+    .payContent {
+        margin-top: 32px;
+
+        .payListTitle {
+            font-size: 30px;
+            font-family: "PingFangSC-Regular; PingFang SC";
+            font-weight: 400;
+            color: #666666;
+        }
+    }
+
+    .payList {
+        margin-top: 32px;
+        overflow-y: scroll;
+        max-height: 280px;
+        // maxHeight:elpx(350);
+    }
+
+    .payItem {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        margin-bottom: 40px
+    }
+
+    .payItemIcon {
+        height: 46px;
+        width: 46px;
+        background: url("./img/line-pay.png") no-repeat;
+        background-size: 100% auto;
+        background-position: center;
+    }
+
+    .payItemText {
+        flex: 1;
+        font-size: 26px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #000000;
+        margin-left: 20px;
+    }
+
+    .payListSelect {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: #CCCCCC 1px solid;
+    }
+
+    .payListSelected {
+        width: 32px;
+        height: 32px;
+        background: url("./img/select.png") no-repeat;
+        background-size: 100% auto;
+        background-position: center;
+    }
+
+    .sureBtn {
+        width: 420px;
+        height: 80px;
+        // boxShadow: "inset 0px -10px 20px 0px #EF9300; inset 0px 2px 6px 0px rgba(255;255;255;0.5)";
+        border-radius: 77px;
+        margin-top: 16px;
+        text-align: center;
+        line-height: 80px;
+        background: linear-gradient(180deg, #FFE74A 0%, #FFA100 100%);
+        box-shadow: inset 0px -10px 20px 0px #EF9300, inset 0px 2px 6px 0px rgba(255, 255, 255, 0.5);
+        font-size: 32px;
+        font-family: "PingFangSC-Regular; PingFang SC";
+        font-weight: 400;
+        color: #000000;
+    }
+}

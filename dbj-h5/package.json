@@ -1,0 +1,70 @@
+{
+  "name": "customer-overseas-dbj",
+  "version": "1.0.0",
+  "private": true,
+  "description": "海外兑币机无屏版",
+  "templateInfo": {
+    "name": "taro-ui",
+    "typescript": true,
+    "css": "less"
+  },
+  "scripts": {
+    "dev": "taro build --type h5 --mode dev --watch",
+    "sit": "taro build --type h5 --mode sit --watch",
+    "release": "taro build --type h5 --mode release --watch",
+    "build:dev": "taro build --type h5 --mode dev",
+    "build:sit": "taro build --type h5 --mode sit",
+    "build:release": "taro build --type h5 --mode release",
+    "build:master": "taro build --type h5 --mode master",
+    "build:lang": "node --experimental-modules ./src/locales/generate-language-pack.mjs"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "author": "",
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "@react-native-async-storage/async-storage": "^1.19.3",
+    "@tarojs/components": "3.6.5",
+    "@tarojs/helper": "3.6.5",
+    "@tarojs/plugin-framework-react": "3.6.5",
+    "@tarojs/plugin-platform-h5": "3.6.5",
+    "@tarojs/react": "3.6.5",
+    "@tarojs/runtime": "3.6.5",
+    "@tarojs/shared": "3.6.5",
+    "@tarojs/taro": "3.6.5",
+    "axios": "^1.5.0",
+    "i18n-js": "^4.3.2",
+    "i18next": "^23.5.1",
+    "js-md5": "^0.7.3",
+    "lodash": "4.17.15",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-i18next": "^13.2.2",
+    "taro-ui": "^3.1.0-beta.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
+    "@tarojs/cli": "3.6.5",
+    "@tarojs/taro-loader": "3.6.5",
+    "@tarojs/webpack5-runner": "3.6.5",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.0",
+    "@types/webpack-env": "^1.13.6",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "babel-preset-taro": "3.6.5",
+    "eslint": "^8.12.0",
+    "eslint-config-taro": "3.6.5",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "postcss": "^8.4.18",
+    "react-refresh": "^0.11.0",
+    "typescript": "^4.1.0",
+    "webpack": "^5.78.0"
+  }
+}

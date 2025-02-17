@@ -1,10 +1,10 @@
 <template>
 <el-row type="flex" class="row-bg" justify="center">
     <el-col :xl="6" :lg="7">
-        <h2>欢迎来到VueAdmin管理系统</h2>
+        <h2>欢迎来到企业信息管理系统</h2>
         <el-image style="width: auto; height: 200px;" :src="require('@/assets/jinan.jpg')"></el-image>
-        <p>公众号LOVE FROM L1ANG</p>
-        <p>关注暨南大学公众号 回复【xxx】获取密码</p>
+        <p>LOVE FROM L1ANG</p>
+        <p>关注暨南大学公众号 回复【xxx】获取账户密码</p>
     </el-col>
 
     <el-col :span="1">
@@ -29,7 +29,6 @@
             </el-form-item>
         </el-form>
     </el-col>
-    <button @click="test()"></button>
 </el-row>
 </template>
 

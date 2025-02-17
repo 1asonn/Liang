@@ -22,7 +22,7 @@
             />
             <div class="tool-box">
               <el-button type="primary" @click="sendMessage" :disabled="isButtonDisabled" class="button-send">发送</el-button>
-              <button @click="callDebunce">test</button>
+              <!-- <button @click="callDebunce">test</button> -->
             </div>
         </div>
     </div>
