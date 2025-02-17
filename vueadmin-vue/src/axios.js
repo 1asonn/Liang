@@ -23,7 +23,7 @@ const request = axios.create({
 request.interceptors.response.use(
     response =>{
     const res = response.data
-
+    
     if(res.id || res.code === 200){                   
         return response }
 

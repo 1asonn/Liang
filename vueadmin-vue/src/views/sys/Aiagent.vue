@@ -22,6 +22,7 @@
             />
             <div class="tool-box">
               <el-button type="primary" @click="sendMessage" :disabled="isButtonDisabled" class="button-send">发送</el-button>
+              <button @click="callDebunce">test</button>
             </div>
         </div>
     </div>
@@ -29,6 +30,17 @@
   
   <script>
   import {marked} from 'marked'
+  
+  
+  function debounce(){
+        let timerId
+        return function(){
+          clearTimeout(timerId)
+          timerId = setTimeout(() => {
+            console.log("Go!!!")
+          },5000)
+        }
+      }
 
   export default {
     data() {
@@ -68,6 +80,11 @@
     },
   
     methods: {
+      demo(){
+        console.log("Go!!!")
+      },
+
+      callDebunce:debounce(),
 
       test(dom){
         let NodeList = dom.childNodes

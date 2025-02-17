@@ -29,19 +29,23 @@
             </el-form-item>
         </el-form>
     </el-col>
+    <button @click="test()"></button>
 </el-row>
 </template>
 
 
 <script>
+  import request from 'axios'
   export default {
     data() {
       return {
         loginForm: {
           username: '',
-          password: '',
-          code: '',
-          token:''
+          password: ''
+        },
+        testForm:{
+          username: 'Test2',
+          password: '1234'
         },
         rules: {
           username: [
@@ -62,14 +66,27 @@
     },
     methods: {
       submitForm(formName) {
+        const loginData = this.testForm
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$axios.post('/login',this.loginForm).then(res => {
-                const jwt = res.headers['authorization']
+            // this.$axios.post('/login',this.loginForm).then(res => {
+            //     const jwt = res.headers['authorization']
 
-                this.$store.commit('SET_TOKEN',jwt)
-                this.$router.push('/index')
-            })
+            //     this.$store.commit('SET_TOKEN',jwt)
+            //     this.$router.push('/index')
+            // })
+            this.$axios.post('http://localhost:4000/user/login',loginData,{
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              transformRequest: (data) => {
+                return new URLSearchParams(data).toString();
+              }
+            }).then((response) => {
+            console.log("response",response)
+            }).catch(
+            (error) => {
+              console.log("error",error)})
 
           } else {
             console.log('error submit!!');
@@ -77,8 +94,6 @@
           }
         });
       },
-
-      
 
       resetForm(formName) {
         this.$refs[formName].resetFields();
@@ -91,6 +106,21 @@
             this.captchaImg = res.data.data.captchaImg;
         })
       },
+      async test(){
+        const username = "Test2"
+        const password = "1234"
+        const response = await this.$axios.post('http://localhost:4000/user/login', {
+          username,
+          password
+        }, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          transformRequest: (data) => {
+            return new URLSearchParams(data).toString();
+          }
+        });
+      }
     },
     created(){                  //页面初始化钩子函数
         this.getcaptchaImg();
