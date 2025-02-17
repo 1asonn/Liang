@@ -1,0 +1,191 @@
+    .indexBox {
+      background-color: #ffffff;
+      height: 100%;
+      position: "relative";
+      padding: 0 24px;
+    }
+
+    .topBgBox {
+      height: 268px;
+      // width: 100%;
+      background: #ffffff;
+
+      position: relative;
+      padding: 13px 0px;
+    }
+
+    .topBg {
+      width: 100%;
+      height: 268px;
+      background: #61DAFF;
+      border-radius: 16px;
+      background: url("./img/banner.png") no-repeat;
+      background-size: 100% auto;
+    }
+
+    .equipment {
+      padding: 12px 0;
+      border-bottom: #EAEAEA solid 1px;
+
+      .equipmentCode {
+        .left {
+          font-size: 26px;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #000000;
+        }
+
+        .right {
+          font-size: 26px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #000000;
+        }
+      }
+
+      .equipmentTip {
+        font-size: 24px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #929292;
+      }
+    }
+
+    .bgTextBox {
+      width: 100%;
+      justify-content: space-around;
+      position: absolute;
+      top: 348px;
+
+      .bgText {
+        width: 320px;
+        // maxWidth:elpx(300);
+        text-align: center;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: bold;
+        color: #000000;
+        font-size: 30px;
+        line-height: 32px;
+      }
+    }
+
+
+    .content {
+      margin-top: 40px;
+
+      .titleBox {
+        position: relative;
+
+        .indexLang {
+          font-size: 26px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #000000;
+          position: absolute;
+          right: 0px;
+          top: 6px;
+          z-index: 9;
+          width: 100%;
+          padding: 0 12px;
+          justify-content: end;
+
+          .langBox {
+            text-align: right;
+
+            .indexLangLine {
+              width: 2px;
+              height: 22px;
+              background-color: #979797;
+              margin: 0 10px;
+            }
+          }
+        }
+
+      }
+
+      .contentList {
+
+        margin-top: 28px;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .goldItem {
+          width: 340px;
+          height: 200px;
+          border-radius: 16px;
+          border: 2px solid #FFBB52;
+          margin-bottom: 24px;
+          position: relative;
+          padding-top: 9px;
+
+          .money {
+            height: 76px;
+            width: 76px;
+            background-size: 100% auto;
+            margin-bottom: 4px;
+          }
+
+          .goldNumber {
+            font-size: 40px;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #9C2627;
+            line-height: 56px;
+            overflow: hidden;
+            width: 100%;
+            word-break: break-all;
+            text-align: center;
+            white-space: nowrap;
+            /* 禁止文本换行 */
+            overflow: hidden;
+            /* 隐藏超出容器的内容 */
+            text-overflow: ellipsis;
+            /* 超出部分显示省略号 */
+            // margin-top: 18px;
+          }
+
+          .btnBg {
+            font-size: 36px;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #6B1516;
+            line-height: 60px;
+            width: 100%;
+            height: 60px;
+            background: #FFEFD5;
+            margin-top: 7px;
+            border-radius: 0px 0px 15px 15px;
+            position: absolute;
+            bottom: 0;
+          }
+        }
+      }
+
+
+
+      .indexRule {
+        font-size: 24px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        color: #929292;
+        line-height: 33px;
+
+        .ruleTitle {
+          font-weight: 500;
+        }
+
+        .ruleContent {
+          margin-top: 7px;
+          font-weight: 400;
+        }
+      }
+    }
+
+    .indexService {
+      height: 96px;
+      width: 96px;
+      background: url("./img/service.png") no-repeat;
+      background-size: 100% auto;
+      position: fixed;
+      bottom: 168px;
+      right: 0;
+    }

@@ -1,0 +1,72 @@
+.selectStoreBox {
+    position: relative;
+    padding: 50px 32px 32px;
+
+    .close {
+        height: 22px;
+        width: 22px;
+        padding: 10px;
+        background: url("./img/close.png") no-repeat;
+        background-size: 100% auto;
+        background-position: center;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
+
+    .selectPay {
+        min-height: 400px;
+        width: 100%;
+    }
+
+    .selectPayTitle {
+        font-size: 32px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 600;
+        color: #000000;
+        text-align: center
+    }
+
+    .payContent {
+        margin-top: 32px;
+    }
+
+    .payList {
+        margin-top: 32px;
+        overflow-y: scroll;
+        max-height: 280px;
+        // maxHeight:elpx(350);
+    }
+
+    .payItem {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        margin-bottom: 40px
+    }
+
+    .payItemText {
+        flex: 1;
+        font-size: 30px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #000000;
+        margin-left: 20px;
+    }
+
+    .payListSelect {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: #CCCCCC 1px solid;
+    }
+
+    .payListSelected {
+        width: 32px;
+        height: 32px;
+        background: url("./img/select.png") no-repeat;
+        background-size: 100% auto;
+        background-position: center;
+    }
+}

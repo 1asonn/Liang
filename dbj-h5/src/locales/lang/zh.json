@@ -1,0 +1,70 @@
+{
+    "index": {
+        "jp": "日文",
+        "th-TH": "泰语",
+        "zh-CH": "中文",
+        "en-US": "英文",
+        "wyw": "文言文",
+        "in-ID": "印尼",
+        "bgtext1": "选择套餐",
+        "bgtext2": "扫描支付",
+        "bgtext3": "设备出币",
+        "change": "切换",
+        "unit": "币",
+        "contentTitle": "购币套餐",
+        "contentTitleTip": "支付成功直接出币，请留意出币口",
+        "issueCoinsCheckBackTips": "出币检查失败！",
+        "issueCoinsBackTips": "出币失败！",
+        "loginCheckBackTips": "登录主板失败！",
+        "ruleTitle": "[温馨提示]",
+        "ruleContent1": "1、支付后若设备启动失败，系统将原路自动退款",
+        "ruleContent2": "2、套餐已经销售，不得退款",
+        "rulePhone": "3、商户电话: 1233348585",
+        "selectEquipment": "已选择设备",
+        "selectEquipmentTips":"若需切换设备，关闭页面重新扫描相应设备二维码"
+    },
+    "selectPay": {
+        "payNum": "支付金额",
+        "selectPayType": "请选择支付方式",
+        "surePay": "确认支付",
+        "noSelectTip": "请选择支付方式"
+    },
+    "payCode": {
+        "scanCode": "扫码支付",
+        "selectTrueMoneyPayType": "请使用TrueMoney的钱包APP扫描",
+        "selectOtherPayType": "请使用相应的钱包APP扫描二维码",
+        "payMoney": "支付金额",
+        "payCodeTip": "此二维码只能扫描一次",
+        "reCreateCode": "重新生成支付二维码",
+        "codeFail": "{{count}}s后失效",
+        "afterExpiration": "后失效"
+    },
+    "paySuccess": {
+        "paySuccess": "支付成功",
+        "payFail": "支付失败",
+        "paySuccessTip1": "支付成功直接出币",
+        "paySuccessTip2": "请留意出币口",
+        "close": "关闭",
+        "payPending": "待支付"
+    },
+    "progress": {
+        "issueCoinsTips": "出币成功",
+        "issueCoinsIng": "正在出币"
+    },
+    "online": {
+        "title": "设备离线",
+        "tips1": "请尝试线下投币/刷离线卡的方式使用",
+        "tips2": "设备(若设备支持)，或换一台设备",
+        "noDevice": "设备未绑定"
+        
+    },
+    "service": {
+        "title": "电话",
+        "btn2": "联系",
+        "btn1": "取消"
+    },
+    "selectStore": {
+        "title": "请选择仓道",
+        "btn": "确认"
+    }
+}
