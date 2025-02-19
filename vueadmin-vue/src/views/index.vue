@@ -2,13 +2,13 @@
   <div>
     <div>this is the page of index!</div>
     <div class="AiAgent">
-      <AiAgent></AiAgent>
     </div>
   </div>
 </template>
 
 <script>
   import AiAgent from '../components/AiAgent.vue'
+
   export default{
       name:"Index",
       components:{

@@ -1,5 +1,6 @@
 <template>
-    <div class="main">
+    <div ref='container' class="main">
+      <div ref="threeContainer" class="three-container"></div>
         <div ref="chatBox" class="chat-box">
                 <!-- 消息列表 -->
                  <div v-for="(message,index) in messages"> 
@@ -22,7 +23,7 @@
             />
             <div class="tool-box">
               <el-button type="primary" @click="sendMessage" :disabled="isButtonDisabled" class="button-send">发送</el-button>
-              <!-- <button @click="callDebunce">test</button> -->
+              <button @click="tDtest()">test</button>
             </div>
         </div>
     </div>
@@ -30,7 +31,9 @@
   
   <script>
   import {marked} from 'marked'
-  
+  import * as THREE from 'three'
+  import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+  import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
   
   function debounce(){
         let timerId
@@ -41,6 +44,7 @@
           },5000)
         }
       }
+      
 
   export default {
     data() {
@@ -69,6 +73,7 @@
       if (this.messages.length > 50) {
         this.messages = this.messages.slice(-50); // 只保留最近的 50 条消息
       }
+      this.tDtest()
     },
 
     updated(){
@@ -80,6 +85,89 @@
     },
   
     methods: {
+      tDtest() {
+        // 初始化 Three.js 场景
+        const scene = new THREE.Scene();
+        const camera = this.createCamera();
+        const renderer = this.createRenderer();
+        this.$refs.threeContainer.appendChild(renderer.domElement);
+
+        window.addEventListener('resize', () => {
+        renderer.setSize(this.$refs.container.clientWidth, this.$refs.container.clientHeight);
+        camera.aspect =this.$refs.container.clientWidth/ this.$refs.container.clientHeight;
+        camera.updateProjectionMatrix();
+        })
+        
+        // 添加环境光
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+
+        // 添加点光源
+        const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+        pointLight.position.set(5, 5, 5);
+        scene.add(pointLight);
+        
+        // 加载 3D 模型并创建粒子系统
+        this.loadModel(scene, camera, renderer);
+      },
+
+      createCamera() {
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 4);
+        return camera;
+      },
+
+      createRenderer() {
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(this.$refs.container.clientWidth, this.$refs.container.clientHeight);
+        return renderer;
+      },
+
+      loadModel(scene, camera, renderer) {
+        const mtlLoader = new MTLLoader();
+        mtlLoader.load('/ball.mtl', (materials) => {
+          materials.preload();
+          const objLoader = new OBJLoader();
+          objLoader.setMaterials(materials);
+          objLoader.load('/ball.obj', (object) => {
+            this.createParticleSystem(scene, object, renderer, camera);
+          });
+        });
+      },
+
+      createParticleSystem(scene, object, renderer, camera) {
+        const geometry = object.children[0].geometry;
+        const particleGeometry = new THREE.BufferGeometry();
+        const positions = geometry.attributes.position.array;
+        particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+
+        const particleMaterial = new THREE.PointsMaterial({
+          color: 0xffffff,
+          size: 0.001,
+          transparent: true,
+          opacity: 0.8
+        });
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particles);
+
+        this.startAnimation(scene, camera, renderer, particles);
+      },
+
+      startAnimation(scene, camera, renderer, particles) {
+        const animate = () => {
+          requestAnimationFrame(animate);
+
+          if (particles) {
+            particles.rotation.x += 0.001;
+            particles.rotation.y += 0.001;
+          }
+
+          renderer.render(scene, camera);
+        };
+        animate();
+      },
+
+
       demo(){
         console.log("Go!!!")
       },
@@ -246,12 +334,10 @@
         if(chatbox.scrollTop = chatBox.scrollHeight){
           console.log("bottom!")
         }
-      }
-
-      
-      
+      }   
   }};
   </script>
+  
   
   <style scoped>
 
@@ -265,6 +351,14 @@
     overflow-y: hidden;
   }
   
+  .three-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* 防止遮挡页面交互 */
+  }
 
   .chat-box {
     display: flex;
@@ -322,6 +416,8 @@
     text-align: right;
     font-size: 14px;
     height: auto;
+    border: 1px solid red;
+    z-index: 1000000;
   }
   
   .message-assistant  {
