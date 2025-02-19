@@ -1,19 +1,24 @@
 <template>
-<div ref="container"class="main">
-<div ref="threeContainer" class="three-container"></div>  
+<div ref="container" class="main">
+  <ParticleSystem />
+  <div class="header">
+    <a href="#">LOGIN</a>
+    <a href="#">ABOUT</a>
+  </div>
+<!-- <div ref="threeContainer" class="three-container"></div>   -->
 <el-row type="flex" class="row-bg" justify="center">
-    <el-col :xl="6" :lg="7">
+    <el-col :xl="6" :lg="7" >
         <h2>欢迎来到企业信息管理系统</h2>
-        <el-image style="width: auto; height: 200px;" :src="require('@/assets/jinan.jpg')"></el-image>
+        <!-- <el-image style="width: auto; height: 200px;" :src="require('@/assets/jinan.jpg')"></el-image>
         <p>LOVE FROM L1ANG</p>
-        <p>关注暨南大学公众号 回复【xxx】获取账户密码</p>
+        <p>关注暨南大学公众号 回复【xxx】获取账户密码</p> -->
     </el-col>
 
-    <el-col :span="1">
+    <el-col :span="1" v-if=false>
         <el-divider direction="vertical"></el-divider>
     </el-col>
 
-    <el-col :xl="6" :lg="7">
+    <el-col :xl="6" :lg="7" v-if=false>
         <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="100px">
             <el-form-item label="用户名" prop="username" style="width: 380px;">
                 <el-input v-model="loginForm.username"></el-input>
@@ -41,7 +46,15 @@
   import * as THREE from 'three'
   import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
   import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+  import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+  import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+  import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
+  import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+  import ParticleSystem from "@/components/ParticleSystem.vue";
   export default {
+    components: {
+      ParticleSystem
+    },
     data() {
       return {
         loginForm: {
@@ -71,86 +84,105 @@
     },
     methods: {
       tDtest() {
-        // 初始化 Three.js 场景
-        const scene = new THREE.Scene();
-        const camera = this.createCamera();
-        const renderer = this.createRenderer();
-        this.$refs.threeContainer.appendChild(renderer.domElement);
+    // 初始化 Three.js 场景
+    const scene = new THREE.Scene();
+    const camera = this.createCamera();
+    const renderer = this.createRenderer();
+    this.$refs.threeContainer.appendChild(renderer.domElement);
 
-        window.addEventListener('resize', () => {
-        renderer.setSize(this.$refs.container.clientWidth, this.$refs.container.clientHeight);
-        camera.aspect =this.$refs.container.clientWidth/ this.$refs.container.clientHeight;
-        camera.updateProjectionMatrix();
-        })
-        
-        // 添加环境光
-        const ambientLight = new THREE.AmbientLight(0x404040);
-        scene.add(ambientLight);
+    // 添加环境光
+    const ambientLight = new THREE.AmbientLight(0x404040);
+    scene.add(ambientLight);
 
-        // 添加点光源
-        const pointLight = new THREE.PointLight(0xffffff, 1, 100);
-        pointLight.position.set(5, 5, 5);
-        scene.add(pointLight);
-        
-        // 加载 3D 模型并创建粒子系统
-        this.loadModel(scene, camera, renderer);
-      },
+    // 添加点光源
+    const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+    pointLight.position.set(5, 5, 5);
+    scene.add(pointLight);
 
-      createCamera() {
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(4, 0, 4);
-        return camera;
-      },
+    // 加载 3D 模型并创建粒子系统
+    this.loadModel(scene, camera, renderer);
 
-      createRenderer() {
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(this.$refs.container.clientWidth, this.$refs.container.clientHeight);
-        return renderer;
-      },
+    // 初始化后处理效果
+    this.setupPostProcessing(scene, camera, renderer);
+  },
 
-      loadModel(scene, camera, renderer) {
-        const mtlLoader = new MTLLoader();
-        mtlLoader.load('/ball.mtl', (materials) => {
-          materials.preload();
-          const objLoader = new OBJLoader();
-          objLoader.setMaterials(materials);
-          objLoader.load('/ball.obj', (object) => {
-            this.createParticleSystem(scene, object, renderer, camera);
-          });
-        });
-      },
+  createCamera() {
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(4, 0, 4);
+    return camera;
+  },
 
-      createParticleSystem(scene, object, renderer, camera) {
-        const geometry = object.children[0].geometry;
-        const particleGeometry = new THREE.BufferGeometry();
-        const positions = geometry.attributes.position.array;
-        particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  createRenderer() {
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    return renderer;
+  },
 
-        const particleMaterial = new THREE.PointsMaterial({
-          color: 0xffffff,
-          size: 0.001,
-          transparent: true,
-          opacity: 0.8
-        });
-        const particles = new THREE.Points(particleGeometry, particleMaterial);
-        scene.add(particles);
+  loadModel(scene, camera, renderer) {
+    const mtlLoader = new MTLLoader();
+    mtlLoader.load('/ball.mtl', (materials) => {
+      materials.preload();
+      const objLoader = new OBJLoader();
+      objLoader.setMaterials(materials);
+      objLoader.load('/ball.obj', (object) => {
+        this.createParticleSystem(scene, object, renderer, camera);
+      });
+    });
+  },
 
-        this.startAnimation(scene, camera, renderer, particles);
-      },
+  createParticleSystem(scene, object, renderer, camera) {
+    const geometry = object.children[0].geometry;
+    const particleGeometry = new THREE.BufferGeometry();
+    const positions = geometry.attributes.position.array;
+    particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
 
-      startAnimation(scene, camera, renderer, particles) {
-        const animate = () => {
-          requestAnimationFrame(animate);
+    const particleMaterial = new THREE.PointsMaterial({
+      color: 0xffffff,
+      size: 0.01,
+      transparent: true,
+      opacity: 0.8
+    });
+    const particles = new THREE.Points(particleGeometry, particleMaterial);
+    scene.add(particles);
 
-          if (particles) {
-            particles.rotation.x += 0.001;
-            particles.rotation.y += 0.001;
-          }
+    this.startAnimation(scene, camera, renderer, particles);
+  },
 
-          renderer.render(scene, camera);
-        };
-        animate();
-      },
+  startAnimation(scene, camera, renderer, particles) {
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      if (particles) {
+        particles.rotation.x += 0.001;
+        particles.rotation.y += 0.001;
+      }
+
+      renderer.render(scene, camera);
+    };
+    animate();
+  },
+
+  setupPostProcessing(scene, camera, renderer) {
+    // 创建 EffectComposer
+    const composer = new EffectComposer(renderer);
+
+    // 添加 RenderPass
+    const renderPass = new RenderPass(scene, camera);
+    composer.addPass(renderPass);
+
+    // 添加模糊效果
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+    composer.addPass(bloomPass);
+
+    // 替换 renderer.render 调用
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      composer.render();
+    };
+    animate();
+  },
+
       submitForm(formName) {
         const loginData = this.testForm
         this.$refs[formName].validate((valid) => {
@@ -212,15 +244,29 @@
         this.getcaptchaImg();
     },
     mounted(){
-      this.tDtest()
+      // this.tDtest()
     }
   }
 </script>
 
 <style scoped>
+    a{
+      color: white;
+      text-decoration: none;  
+    }
 
+    .header{
+      position: absolute;
+      display: flex;
+      right: 30px;
+      top: 0;
+      margin-top:20px ;
+      gap: 20px;
+    }
     .main{
       position: relative;
+      display: flex;
+      flex-direction: column;
       height: 100vh;
     }
     .three-container {
@@ -233,7 +279,7 @@
     }
 
    .el-row{
-    background-color: #fafafa;
+    background-color: rgba(red, green, blue, 0);
     height: 100vh;
     display: flex;
     align-items:center;

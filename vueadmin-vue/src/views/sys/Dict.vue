@@ -1,10 +1,14 @@
 <template>
-    <div>数字字典</div>
+     <ParticleSystem />
 </template>
 
 <script>
+import ParticleSystem from "@/components/ParticleSystem.vue";
     export default {
-        name: 'Dirct'
+        name: 'Dirct',
+        components: {
+            ParticleSystem,
+        },
     }
 </script>
 

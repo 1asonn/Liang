@@ -1,6 +1,5 @@
 <template>
     <div ref='container' class="main">
-      <div ref="threeContainer" class="three-container"></div>
         <div ref="chatBox" class="chat-box">
                 <!-- 消息列表 -->
                  <div v-for="(message,index) in messages"> 
@@ -75,7 +74,6 @@
       if (this.messages.length > 50) {
         this.messages = this.messages.slice(-50); // 只保留最近的 50 条消息
       }
-      this.tDtest()
     },
 
     updated(){
@@ -347,8 +345,6 @@
     overflow: hidden !important;
   }
 
-  
-
   .main{
     position: relative;
     height: 80vh;
@@ -362,7 +358,6 @@
   width: 100%;
   height: 100%;
   pointer-events: none; /* 防止遮挡页面交互 */
-  z-index: 10000;
   }
 
   .chat-box {
