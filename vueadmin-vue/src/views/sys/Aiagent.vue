@@ -4,7 +4,9 @@
         <div ref="chatBox" class="chat-box">
                 <!-- 消息列表 -->
                  <div v-for="(message,index) in messages"> 
+                  
                     <div v-if="message.role === 'user'" class="message-user">{{ message.text }}</div>
+                  
                     <div class="message-contaniner">
                       <div :ref="'response-' + index" v-if="message.role === 'assistant'" v-html="marked2html(message.text)" class="message-assistant"></div>
                       <div v-show="showCursor && message.role != 'user' && index === messages.length - 1" class="cursor"></div>
@@ -113,7 +115,7 @@
 
       createCamera() {
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 0, 4);
+        camera.position.set(4, 0, 4);
         return camera;
       },
 
@@ -345,6 +347,8 @@
     overflow: hidden !important;
   }
 
+  
+
   .main{
     position: relative;
     height: 80vh;
@@ -358,6 +362,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none; /* 防止遮挡页面交互 */
+  z-index: 10000;
   }
 
   .chat-box {
@@ -409,6 +414,7 @@
   }
   
   .message-user {
+    position: relative;
     background-color: #e1ffc8; /* 用户消息的背景颜色 */
     border-radius: 10px;
     padding: 10px 10px;
@@ -416,8 +422,6 @@
     text-align: right;
     font-size: 14px;
     height: auto;
-    border: 1px solid red;
-    z-index: 1000000;
   }
   
   .message-assistant  {
