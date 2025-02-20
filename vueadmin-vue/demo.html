@@ -6,45 +6,15 @@
   <title>Document</title>
 </head>
 <body>
-  <!-- <div class="container">
-    <h1>Demo</h1>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
-    <p>This is a demo page for Vue Admin Vue.</p>
+
+  <div class="container">
+    <!-- 尾线 -->
+    <svg class="g-svg" width="400" height="160" xmlns="http://www.w3.org/2000/svg">
+      <path id="svgpath" d="M 350 40 C 1000 1000, -350 1000, 350 1960" stroke="black" fill="transparent" />
+    </svg>
+    <!-- 箭头 -->
+    <div class="ele"></div>
   </div>
-
-  <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 50 50 L 150 50 L 100 150 Z" fill="orange" stroke="black" stroke-width="2" />
-  </svg> -->
-
-  <div>
-    <div></div>
-    <div></div>
-  </div>
-
-
-  <script>
-
-  </script>
 
 
   <style>
@@ -63,48 +33,59 @@
     );
     background-size: 50px 50px;
   }
-
-    .container{
-      height:50vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .container::before{
-      content:'';
-      height: 10px;
-      background: #ffc107;
-      animation: scale 3s linear ;
-      animation-timeline: scroll();
-      transform-origin: 0 50% ;
-      position: fixed;
-      left: 0;
-      top: 0;
-      right: 0;
-    }
-      @keyframes scale {
-        0%{
-           transform: scale(0);
-        }
-        100%{
-          transform: scale(1);
-        }
+  .g-svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 700px;
+    height: 2000px;
+    transform: translate(-50%, 0);
+  }
+  #svgpath {
+    stroke: #9bc9de;
+    stroke-width: 3px;
+    /* 第一部分为实线长度 第二部分为虚线长度 */
+    stroke-dasharray: 2108,2108;
+    animation: lineMove 4s linear;
+    animation-timeline: scroll();
+  }
+  @keyframes lineMove {
+    /* 初始状态为实线刚好结束，将要进入虚线的状态 */
+      0% {
+          stroke-dashoffset: 2108;
       }
-
-     
-
-  div:nth-child(2) {
+      /* 将实线拖出来 */
+      100% {
+          stroke-dashoffset: 0;
+      }
+  }
+  
+  .ele {
+    position: absolute;
     width: 40px;
     height: 40px;
-    animation: move 3s linear alternate infinite;
-    background: linear-gradient(#fc0, #f0c);
-    offset-path: path('M 10 80 C 80 10, 130 10, 190 80 S 300 150, 360 80');
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    background: linear-gradient(270deg, #65d060, #0887ec);
+    offset-path: path("M 350 40 C 1000 1000, -350 1000, 350 1960");
+    animation: move 4s linear;
+    animation-timeline: scroll();
   }
+
+    .container{
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 700px;
+      height: 2000px;
+      transform: translate(-50%, 0);
+    }
 
   @keyframes move{
     0%{
       offset-distance: 0%;
+    }
+    50% {
+        transform: scale(2.5);
     }
     100%{
       offset-distance: 100%;
