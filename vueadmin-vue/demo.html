@@ -7,32 +7,27 @@
 </head>
 <body>
 
+
   <div class="container">
     <!-- 尾线 -->
     <svg class="g-svg" width="400" height="160" xmlns="http://www.w3.org/2000/svg">
       <path id="svgpath" d="M 350 40 C 1000 1000, -350 1000, 350 1960" stroke="black" fill="transparent" />
     </svg>
     <!-- 箭头 -->
-    <div class="ele"></div>
+    <div class="tra"></div>
+    <div class="point point1"></div>
+    <div class="point point2"></div>
+    <div class="point point3"></div>
   </div>
 
 
   <style>
-    /* 格子背景 */
-    body {
+    html,body {
     width: 100%;
     height: 100%;
-    background: conic-gradient(
-        #fff,
-        #fff 90deg,
-        #ddd 90deg,
-        #ddd 180deg,
-        #fff 180deg,
-        #fff 270deg,
-        #ddd 270deg
-    );
-    background-size: 50px 50px;
-  }
+    display: flex;
+    }
+
   .g-svg {
     position: absolute;
     top: 0;
@@ -41,6 +36,7 @@
     height: 2000px;
     transform: translate(-50%, 0);
   }
+
   #svgpath {
     stroke: #9bc9de;
     stroke-width: 3px;
@@ -49,6 +45,7 @@
     animation: lineMove 4s linear;
     animation-timeline: scroll();
   }
+
   @keyframes lineMove {
     /* 初始状态为实线刚好结束，将要进入虚线的状态 */
       0% {
@@ -60,10 +57,11 @@
       }
   }
   
-  .ele {
+  .tra {
     position: absolute;
     width: 40px;
     height: 40px;
+    /* 画出一个三角形 */
     clip-path: polygon(0 0, 100% 50%, 0 100%);
     background: linear-gradient(270deg, #65d060, #0887ec);
     offset-path: path("M 350 40 C 1000 1000, -350 1000, 350 1960");
@@ -78,6 +76,13 @@
       width: 700px;
       height: 2000px;
       transform: translate(-50%, 0);
+    }
+
+    .container::before{ 
+      content: "";
+      position: absolute;
+      inset: 0 -30vw;
+      background: linear-gradient(#000, purple);
     }
 
   @keyframes move{
