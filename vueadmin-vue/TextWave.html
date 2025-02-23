@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <p class="text">企业信息管理系统</p>
+    </div>
+</body>
+
+<style>
+    html,body{
+        height: 100%;
+        width: 100%;
+        display: flex;
+    }
+
+    .container{
+        margin: auto;
+    }
+    
+    p{
+        position: relative;
+        font-size: 120px;
+        font-weight: bold;
+        /* 文字背景为白色,属于高亮度颜色,方便后续进行混合模式 */
+        background: #fff;
+        color: #000;
+        overflow: hidden;
+        
+    }
+
+    p::before,p::after{
+        content: "";
+        position: absolute;
+        top: -923px;
+        left: 50%;
+        width: 2030px;
+        height: 2030px;
+        border-radius: 45% 48% 43% 47%;
+        background: rgba(3, 169, 244, .85);
+        transform: translate(-50%,-50%);
+        z-index: 1;
+        /* lighten模式 每一个像素会选择背景颜色与当前元素颜色中亮度较高的一个 */
+        mix-blend-mode: lighten;
+        animation: rotate 10s linear infinite;
+    }
+
+    p::after{
+        border-radius: 43% 47% 44% 48%;
+        animation: rotate 10s infinite .5s linear;
+    }
+
+    @keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+    }
+</style>
+
+
+</html>

@@ -34,9 +34,14 @@ const routes = [
     ]
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../views/Login.vue')  //懒加载
+    path: '/Portal',
+    name: 'Portal',
+    component: () => import('../views/Portal.vue')  //懒加载
+  },
+  {
+    path:'/Login',
+    name:'login',
+    component: () => import('../views/Login.vue')  
   }
 ]
 
