@@ -51,7 +51,7 @@
     methods:{
         selectMenu(item){
                 this.$store.commit('addTab',item)
-            }
+        }
     }
     
     }

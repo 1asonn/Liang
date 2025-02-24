@@ -22,13 +22,12 @@
 
             <p class="reg">Dont't have an account?<a>Register</a></p>
 
-
         </div>
-
     </section>
 </template>
 
 <script>
+
 </script>
 
 <style scoped>
@@ -87,4 +86,5 @@
         font-size: 1.2rem;
         color: black;
     }
+
 </style>

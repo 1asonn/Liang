@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-
-
-  <div class="container">
+<template>
+    <div class="container">
     <!-- 尾线 -->
     <svg class="g-svg" width="400" height="160" xmlns="http://www.w3.org/2000/svg">
       <path id="svgpath" d="M 350 40 C 1200 1000, -550 1000, 350 1960" stroke="black" fill="transparent" />
@@ -23,16 +14,13 @@
     <p class="p3">欢迎来到AIA信息智慧管理平台</p>
     <h2 class="title">Welcome to AIA Intelligent Information Management Platform!</h2>
   </div>
+</template>
 
+<script>
+</script>
 
-  <style>
-    html,body {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    }
+<style scoped>
 
-    
     h2 {
     position: absolute;
     left: 0;
@@ -80,7 +68,7 @@
     offset-path: path("M 350 40 C 1200 1000, -550 1000, 350 1960");
     background: linear-gradient(270deg, #673AB7, #FF5722);
     animation: move 1s linear;
-    animation-timeline: scroll(root);
+    animation-timeline: scroll();
     z-index: 10;
   }
 
@@ -108,7 +96,7 @@
       background: #ff5722;
       opacity: 0;
       animation: show 1s linear forwards;
-      animation-timeline: scroll(root);
+      animation-timeline: scroll();
     }
 
     .point::before,
@@ -157,7 +145,7 @@
       border: 4px dashed #fff;
       /* forwards ---> 设置动画结束后停留在最后一帧 */
       animation: textshow 1s linear forwards;  
-      animation-timeline: scroll(root);
+      animation-timeline: scroll();
     }
 
     .p1{
@@ -233,7 +221,4 @@
     }
     
   }
-
-  </style>
-</body>
-</html>
+</style>

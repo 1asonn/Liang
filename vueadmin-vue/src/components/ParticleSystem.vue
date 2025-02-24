@@ -5,8 +5,7 @@
   <script>
   import * as THREE from "three";
   import GetFlatGeometry from "@/utils/GetFlatGeometry.js";
-  import g from "@/assets/gradient.png";
-  
+
   export default {
     mounted() {
       this.initThree();

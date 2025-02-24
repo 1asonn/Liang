@@ -33,13 +33,16 @@
 
 
 <style>
-/* 设置外部页面禁止滑动 */
-html{
-  overflow: hidden;
+
+body,html{
+  height: 100%;
+  width: 100%;
 }
+
 p{
   font-size: 14px;
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

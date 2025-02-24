@@ -2,8 +2,8 @@
 <div ref="container" class="main">
   <ParticleSystem />
   <div class="header">
-    <a href="#">LOGIN</a>
-    <a href="#">ABOUT</a>
+    <router-link class="router-link" to="/login">LOGIN</router-link>
+    <router-link class="router-link" to="/about">ABOUT</router-link>
   </div>
 
     <div class="svgContainer">
@@ -43,14 +43,9 @@
 
 <script>
   import request from 'axios'
-  import * as THREE from 'three'
-  import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
-  import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
-  import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-  import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-  import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
-  import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
   import ParticleSystem from "@/components/ParticleSystem.vue";
+import { RouterLink } from 'vue-router';
+import router from '@/router';
   export default {
     components: {
       ParticleSystem
@@ -83,105 +78,6 @@
       };
     },
     methods: {
-      tDtest() {
-    // 初始化 Three.js 场景
-    const scene = new THREE.Scene();
-    const camera = this.createCamera();
-    const renderer = this.createRenderer();
-    this.$refs.threeContainer.appendChild(renderer.domElement);
-
-    // 添加环境光
-    const ambientLight = new THREE.AmbientLight(0x404040);
-    scene.add(ambientLight);
-
-    // 添加点光源
-    const pointLight = new THREE.PointLight(0xffffff, 1, 100);
-    pointLight.position.set(5, 5, 5);
-    scene.add(pointLight);
-
-    // 加载 3D 模型并创建粒子系统
-    this.loadModel(scene, camera, renderer);
-
-    // 初始化后处理效果
-    this.setupPostProcessing(scene, camera, renderer);
-  },
-
-  createCamera() {
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(4, 0, 4);
-    return camera;
-  },
-
-  createRenderer() {
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    return renderer;
-  },
-
-  loadModel(scene, camera, renderer) {
-    const mtlLoader = new MTLLoader();
-    mtlLoader.load('/ball.mtl', (materials) => {
-      materials.preload();
-      const objLoader = new OBJLoader();
-      objLoader.setMaterials(materials);
-      objLoader.load('/ball.obj', (object) => {
-        this.createParticleSystem(scene, object, renderer, camera);
-      });
-    });
-  },
-
-  createParticleSystem(scene, object, renderer, camera) {
-    const geometry = object.children[0].geometry;
-    const particleGeometry = new THREE.BufferGeometry();
-    const positions = geometry.attributes.position.array;
-    particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-
-    const particleMaterial = new THREE.PointsMaterial({
-      color: 0xffffff,
-      size: 0.01,
-      transparent: true,
-      opacity: 0.8
-    });
-    const particles = new THREE.Points(particleGeometry, particleMaterial);
-    scene.add(particles);
-
-    this.startAnimation(scene, camera, renderer, particles);
-  },
-
-  startAnimation(scene, camera, renderer, particles) {
-    const animate = () => {
-      requestAnimationFrame(animate);
-
-      if (particles) {
-        particles.rotation.x += 0.001;
-        particles.rotation.y += 0.001;
-      }
-
-      renderer.render(scene, camera);
-    };
-    animate();
-  },
-
-  setupPostProcessing(scene, camera, renderer) {
-    // 创建 EffectComposer
-    const composer = new EffectComposer(renderer);
-
-    // 添加 RenderPass
-    const renderPass = new RenderPass(scene, camera);
-    composer.addPass(renderPass);
-
-    // 添加模糊效果
-    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
-    composer.addPass(bloomPass);
-
-    // 替换 renderer.render 调用
-    const animate = () => {
-      requestAnimationFrame(animate);
-
-      composer.render();
-    };
-    animate();
-  },
 
       submitForm(formName) {
         const loginData = this.testForm
@@ -240,11 +136,21 @@
         });
       }
     },
-    created(){                  //页面初始化钩子函数
+
+    created(){                //页面初始化钩子函数
         this.getcaptchaImg();
     },
-    mounted(){
-      // this.tDtest()
+
+    mounted() {
+    // 在组件挂载后添加样式
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    },
+
+    beforeDestroy() {
+      // 在组件销毁前移除样式
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
   }
 </script>
@@ -265,6 +171,7 @@
       margin-top:20px ;
       gap: 20px;
     }
+
     .main{
       position: relative;
       display: flex;
@@ -312,6 +219,7 @@
       letter-spacing: 5px;
       font-size: 60px;
     }
+    
   @keyframes stroke {
     0% {
         fill: rgba(72, 138, 20, 0);
