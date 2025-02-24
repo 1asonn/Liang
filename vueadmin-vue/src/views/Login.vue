@@ -1,12 +1,12 @@
 <template>
     <section id="login-form" class="main">
         <div class="formContainer">
-            <h1>Login</h1>
-            <div class="input-wrap">
+            <h1>Welcome</h1>
+            <div class="input-wrap i1">
                 <input type="text" placeholder="请输入您的邮箱~" spellcheck="false" required>
                 <i class="fa-solid fa-user"></i>
             </div>
-            <div class="input-wrap">
+            <div class="input-wrap i2">
                 <input type="password" placeholder="请输入密码~" spellcheck="false" required>
                 <i class="fa-solid fa-lock"></i>
             </div>
@@ -20,7 +20,7 @@
 
             <button>Login</button>
 
-            <p class="reg">Dont't have an account?<a>Register</a></p>
+            <p class="reg">Dont't have an account? <a>Register</a></p>
 
         </div>
     </section>
@@ -42,31 +42,52 @@
         background-image: url('../assets/jinan.jpg');
         background-size:cover;
         background-position: center;
+
     }
 
     .formContainer{
-        width: 30%;
+        border: 1px solid rgba(255, 255, 255, 0.329);
+        background-color: rgba(255, 255, 255,0.1);
+        width: 45%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 20px 10px;
+        border-radius: 10px;
+        backdrop-filter: blur(3px);
+        box-shadow: 0 10px 25px grey;
     }
 
     .formContainer h1{
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         color: black;
-        margin: 25px;
+        letter-spacing: 3px;
+        opacity: 0;
+        animation: reload 0.5s ease-out forwards;
+        animation-delay: 0.2s;
     }
 
     .input-wrap{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border: 1px solid red;
-        margin-bottom: 25px;
-        height: 55px;
+        border: 1px solid grey;
+        margin-bottom: 20px;
+        height: 45px;
         width: 90%;
+        opacity: 0;
+        border-radius: 50px;
+        box-shadow: 0 0 5px grey;
+    }
+    .i1{
+        animation: reload 0.5s ease-out forwards;
+        animation-delay: 0.4s;
+    }
 
+    .i2{
+        animation: reload 0.5s ease-out forwards;
+        animation-delay: 0.6s;
     }
 
     .input-wrap i{
@@ -78,13 +99,73 @@
         border: none;
         outline: none;
         background-color: transparent;
-        font-size: 1.2rem;
+        font-size: 1rem;
         padding: 5px 25px;
     }
 
     input::placeholder{
-        font-size: 1.2rem;
+        font-size: 1rem;
         color: black;
     }
 
+    .rem{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: reload 0.5s ease-out forwards;
+        animation-delay: 0.8s;
+    }
+
+    .rem p,.rem a{
+        font-size: 1.2rem;
+        color: black;
+        cursor: pointer;
+    }
+
+    button{
+        font-size: 1.2rem;
+        height: 60px;
+        width: 90%;
+        border-radius: 50px;
+        font-weight: 600;
+        /* 字符的间距 */
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+        opacity: 0;
+        animation: reload 0.5s ease-out forwards;
+        animation-delay: 1s;
+    }
+
+    button:hover{
+
+    }
+
+    .reg{
+        font-size: 1.2rem;
+        color: black;
+        margin-bottom: 10px;
+        opacity: 0;
+        animation: reload 0.5s ease-out forwards;
+        animation-delay: 1.2s;
+    }
+
+    .reg a {
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    @keyframes reload {
+        0%{
+            transform: translateY(150px);
+        }
+        100%{
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
 </style>
