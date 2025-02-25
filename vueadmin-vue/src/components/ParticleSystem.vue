@@ -67,7 +67,7 @@
   
           // 渲染场景
           renderer.render(scene, camera);
-          time += 0.01; // 控制波浪的动态变化速度
+          time += 0.015; // 控制波浪的动态变化速度
         };
         animate();
   
@@ -86,5 +86,10 @@
   .three-container {
     width: 100%;
     height: 100vh;
+  }
+
+  canvas{
+    width: 100%;
+    height: 100%;
   }
   </style>

@@ -11,6 +11,7 @@ app.use(cors())
 app.use(express.urlencoded({ extended:false }))
 app.use('/user',router)
 
+
 app.listen(4000,() => {
     console.log('serve is running on port: 4000')
 })

@@ -3,22 +3,22 @@
         <div class="formContainer">
             <h1>Welcome</h1>
             <div class="input-wrap i1">
-                <input type="text" placeholder="请输入您的邮箱~" spellcheck="false" required>
+                <input v-model="loginForm.username" type="text" placeholder="请输入您的邮箱~" spellcheck="false" required>
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class="input-wrap i2">
-                <input type="password" placeholder="请输入密码~" spellcheck="false" required>
+                <input v-model="loginForm.password" type="password" placeholder="请输入密码~" spellcheck="false" required>
                 <i class="fa-solid fa-lock"></i>
             </div>
             <div class="rem">
                 <p>
-                    <input type="checkbox" v-model="remember">
+                    <input type="checkbox">
                     Remember me
                 </p>
                 <a>Forgot password?</a>
             </div>
 
-            <button>Login</button>
+            <button @click="Login">Login</button>
 
             <p class="reg">Dont't have an account? <a>Register</a></p>
 
@@ -27,12 +27,39 @@
 </template>
 
 <script>
+    export default{
+        data(){
+            return{
+               loginForm:{
+                username: '',
+                password: ''
+               }
+            };
+        },
+
+        methods:{
+            Login(){
+            this.$axios.post('http://localhost:4000/user/login',this.loginForm,{
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              transformRequest: (data) => {
+                return new URLSearchParams(data).toString();
+              }
+            }).then((response) => {
+            console.log("response",response)
+            }).catch(
+            (error) => {
+              console.log("error",error)})
+            }
+        }
+    }
 
 </script>
 
 <style scoped>
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
-
+    
     .main{
         display: flex;
         flex-direction: column;
@@ -142,7 +169,7 @@
     }
 
     button:hover{
-
+        background-color: rgba(161, 143, 143, 0.949);
     }
 
     .reg{
