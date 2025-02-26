@@ -1,0 +1,41 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "search.exclude": {
+      "**/dist": true,
+      "**/yarn.lock": true,
+      "**/package-lock.json": true,
+      "**/*.svg":true
+    },
+    "javascript.format.enable": false,
+    "typescript.format.enable": false,
+    "json.format.enable": false,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.requireConfig": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "never"
+    },
+    "files.associations": {
+      ".env*": "ini"
+    },
+    "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[svg]": {
+      "editor.defaultFormatter": "jock.svg"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[vue]": {
+      "editor.quickSuggestions": {
+        "strings": true
+      },
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "never"
+      },
+    },
+    "volar.completion.preferredTagNameCase": "kebab"
+}

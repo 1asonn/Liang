@@ -1,0 +1,52 @@
+{
+    "en": {
+        "json": "en",
+        "antd": "en_GB",
+        "dayjs": "en"
+    },
+    "ja": {
+        "json": "ja",
+        "antd": "ja_JP",
+        "dayjs": "ja"
+    },
+    "th": {
+        "json": "th",
+        "antd": "th_TH",
+        "dayjs": "th"
+    },
+    "id": {
+        "json": "id",
+        "antd": "id_ID",
+        "dayjs": "id"
+    },
+    "ms": {
+        "json": "ms",
+        "antd": "ms_MY",
+        "dayjs": "ms"
+    },
+    "vi": {
+        "json": "vi",
+        "antd": "vi_VN",
+        "dayjs": "vi"
+    },
+    "cs": {
+        "json": "cs",
+        "antd": "cs_CZ",
+        "dayjs": "cs"
+    },
+    "es": {
+        "json": "es",
+        "antd": "es_ES",
+        "dayjs": "es"
+    },
+    "zh-TW": {
+        "json": "zh-TW",
+        "antd": "zh_TW",
+        "dayjs": "zh-tw"
+    },
+    "ko": {
+        "json": "ko",
+        "antd": "ko_KR",
+        "dayjs": "ko"
+    }
+}
