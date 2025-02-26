@@ -6,7 +6,7 @@
     <router-link class="router-link" to="/about">ABOUT</router-link>
   </div>
 
-    <div class="svgContainer">
+    <div class="svgContainer" v-if="true">
       <svg viewBox="0 0 400 200">
         <text x="0" y="50%" class="text"> Welcome to EIMS </text>
       </svg> 

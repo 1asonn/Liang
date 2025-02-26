@@ -24,12 +24,13 @@ request.interceptors.response.use(
     response =>{
     const res = response.data
     
-    if(res.id || res.code === 200){                   
+    if(res.id || res.code === 777){  
+        Element.Message.success('登录成功')  //弹窗成功提示                 
         return response }
 
     else{
-        Element.Message.error(res.msg,res.msg,'System Error!')  //弹窗错误警告
-        return Promise.reject(response.data.msg)}
+        // Element.Message.error(res.msg,res.msg,'System Error!')  //弹窗错误警告
+        return Promise.reject(response.data.msg)}   
     },
     error =>{
     console.log("error",error)

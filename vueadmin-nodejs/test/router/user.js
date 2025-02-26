@@ -41,7 +41,8 @@ router.post('/login',async (req,res) => {
     //生成token返回给浏览器
     //生成token
     const token = jwt.sign({username},"yyjkn")
-    res.send({token})
+    const code = 777
+    res.send({code,token})
 })
 
 // 权限校验功能

@@ -11,11 +11,11 @@ export default function GetFlatGeometry() {
   const scales = new Float32Array(numParticles);         //存储每个粒子的缩放值
 
 
-  let i = 0;
+
   const TextureLoader = new THREE.TextureLoader();
   const material = new THREE.PointsMaterial({
-    size: 5,
-    sizeAttenuation: true,
+    size: 6,
+    sizeAttenuation: false,
     transparent: true,
     opacity: 1,
     blending: THREE.AdditiveBlending,
@@ -23,6 +23,9 @@ export default function GetFlatGeometry() {
     map: TextureLoader.load(g)
   });
 
+
+  //模拟波浪效果
+  let i = 0;
   for (let ix = 0; ix < AMOUNTX; ix++) {
     for (let iy = 0; iy < AMOUNTY; iy++) {
       vertices[i] = ix * SEPARATION - (AMOUNTX * SEPARATION) / 2; // x
