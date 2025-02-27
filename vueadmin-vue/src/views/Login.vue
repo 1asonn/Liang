@@ -23,6 +23,11 @@
             <p class="reg">Dont't have an account? <a>Register</a></p>
 
         </div>
+
+        <div class="demo">
+            {{$t("帮助")}}
+        </div>
+        <button @click="changeLang">changeLang</button>
     </section>
 </template>
 
@@ -37,6 +42,10 @@
                }
             };
         },
+        created(){
+            this.$i18n.locale = 'zh-TW';
+            console.log("i18n",this.$i18n)}
+            ,
 
         methods:{
             Login(){
@@ -53,8 +62,13 @@
             (error) => {
                 Element.Message.error(error)
               console.log("error",error)})
-            }
+            },
+            changeLang(){
+                const res = require('../i18n/lang/zh-TW.js')
+                console.log("========",res)
+            }   
         }
+        
     }
 
 </script>
