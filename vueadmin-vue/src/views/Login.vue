@@ -27,6 +27,7 @@
 </template>
 
 <script>
+    import Element from "element-ui"
     export default{
         data(){
             return{
@@ -50,6 +51,7 @@
             console.log("response",response)
             }).catch(
             (error) => {
+                Element.Message.error(error)
               console.log("error",error)})
             }
         }

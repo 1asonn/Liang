@@ -3,8 +3,8 @@ import * as THREE from 'three';
 import g from '@/assets/gradient.png';
 
 export default function GetFlatGeometry() {
-  const AMOUNTX = 50;
-  const AMOUNTY = 50;
+  const AMOUNTX = 70;
+  const AMOUNTY = 70;
   const SEPARATION = 100;
   const numParticles = AMOUNTX * AMOUNTY;
   const vertices = new Float32Array(numParticles * 3);   //存储每个粒子的三维坐标 每三个下标一组[x,y,z]
@@ -14,7 +14,7 @@ export default function GetFlatGeometry() {
 
   const TextureLoader = new THREE.TextureLoader();
   const material = new THREE.PointsMaterial({
-    size: 6,
+    size: 5,
     sizeAttenuation: false,
     transparent: true,
     opacity: 1,
@@ -24,7 +24,6 @@ export default function GetFlatGeometry() {
   });
 
 
-  //模拟波浪效果
   let i = 0;
   for (let ix = 0; ix < AMOUNTX; ix++) {
     for (let iy = 0; iy < AMOUNTY; iy++) {

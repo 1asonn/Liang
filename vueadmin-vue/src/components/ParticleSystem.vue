@@ -15,15 +15,16 @@
         // 创建场景
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x000000);
-        scene.fog = new THREE.FogExp2(328972, 0.001)
+        scene.fog = new THREE.FogExp2(328972, 5e-4)
         // 创建相机
+        
         const camera = new THREE.PerspectiveCamera(
-          85,
+          80,
           window.innerWidth / window.innerHeight,
-          0.1,
-          1400
+          1,
+          5e4
         );
-        camera.position.set(110, 200, 600);
+        camera.position.set(0, 0, 1e3);
         camera.lookAt(new THREE.Vector3(0,0,0)); // 固定相机朝向
         
         // const axesHelper = new THREE.AxesHelper(500)
@@ -31,7 +32,7 @@
         // 创建渲染器
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.autoClear = true
+        renderer.autoClear = false
         renderer.setClearColor(scene.fog.color)
         
         renderer.shadowMap.enabled = true
@@ -41,7 +42,7 @@
         // 添加粒子系统
         const particles = GetFlatGeometry();
         scene.add(particles);
-  
+        
         // 添加环境光
         const ambientLight = new THREE.AmbientLight(0x404040);
         scene.add(ambientLight);
@@ -61,13 +62,13 @@
           for (let i = 0; i < positions.length; i += 3) {
             const x = positions[i];
             const z = positions[i + 2];
-            positions[i + 1] = Math.sin((x + time) * 0.5) * 50 + Math.cos((z + time) * 0.5) * 50;
+            positions[i + 1] = Math.sin((x + time) * 0.5) * 50 + Math.cos((z + time) * 0.5) * 50 -350;
           }
           particles.geometry.attributes.position.needsUpdate = true;
   
           // 渲染场景
           renderer.render(scene, camera);
-          time += 0.015; // 控制波浪的动态变化速度
+          time += 0.03; // 控制波浪的动态变化速度
         };
         animate();
   

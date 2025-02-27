@@ -215,7 +215,7 @@ import router from '@/router';
     svg text {
       font-family: "Bangers", cursive;
       text-transform: uppercase;
-      animation: stroke 5s forwards alternate;
+      animation: stroke 5s forwards alternate infinite;
       letter-spacing: 5px;
       font-size: 60px;
     }
