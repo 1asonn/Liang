@@ -24,8 +24,7 @@ request.interceptors.response.use(
     response =>{
     const res = response.data
     
-    if(res.id || res.code === 777){  
-        Element.Message.success('登录成功')  //弹窗成功提示                 
+    if(res.id || res.code === 200){                 
         return response }
 
     else{

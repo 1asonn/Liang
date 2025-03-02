@@ -5,7 +5,7 @@
     </el-aside>
     <el-container>
       <el-header>
-        <h3>VueAdmin后台管理系统</h3>
+        <h3>医院信息管理系统</h3>
         <div class="header_userMenu">
             <el-avatar  size="medium" :src=userInfo.avatar></el-avatar>
             <el-dropdown trigger="click">
@@ -15,7 +15,7 @@
                     <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-            <el-link :underline="false" href="https://bilibili.com" target="_blank">B站</el-link>
+            <!-- <el-link :underline="false" href="https://bilibili.com" target="_blank">B站</el-link> -->
         </div>
       </el-header>
       
@@ -74,7 +74,7 @@
   .el-header {
     position: relative;
     display: flex;
-    background-color: #17b3a3;
+    background-color: rgba(79, 55, 55, 0.338);
     color: #333;
     text-align: center;
     line-height: 60px;

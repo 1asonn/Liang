@@ -39,43 +39,37 @@
 			</el-table-column>
 
 			<el-table-column
-					label="头像"
-					width="50">
-				<template slot-scope="scope">
-					<el-avatar size="small" :src="scope.row.avatar"></el-avatar>
-				</template>
+					prop="medicalId"
+					label="就诊卡号"
+					width="120">
 			</el-table-column>
 
 			<el-table-column
-					prop="username"
-					label="用户名"
+					prop="name"
+					label="患者姓名"
 					width="120">
 			</el-table-column>
 			<el-table-column
-					prop="code"
-					label="角色名称">
-				<template slot-scope="scope">
-					<el-tag size="small" type="info" v-for="item in scope.row.roles">{{item.name}}</el-tag>
-				</template>
-
+					prop="gender"
+					label="性别">
 			</el-table-column>
 			<el-table-column
-					prop="email"
-					label="邮箱">
+					prop="birthday"
+					label="出生日期">
+			</el-table-column>
+			<el-table-column
+					prop="age"
+					label="年龄">
+			</el-table-column>
+
+			<el-table-column
+					prop="idCard"
+					label="身份证号码"
+					width="120">
 			</el-table-column>
 			<el-table-column
 					prop="phone"
-					label="手机号">
-			</el-table-column>
-
-			<el-table-column
-					prop="statu"
-					label="状态">
-				<template slot-scope="scope">
-					<el-tag size="small" v-if="scope.row.statu === 1" type="success">正常</el-tag>
-					<el-tag size="small" v-else-if="scope.row.statu === 0" type="danger">禁用</el-tag>
-				</template>
-
+					label="联系电话">
 			</el-table-column>
 			<el-table-column
 					prop="created"
@@ -85,16 +79,17 @@
 			</el-table-column>
 			<el-table-column
 					prop="icon"
-					width="260px"
+					width="200px"
 					label="操作">
 
 				<template slot-scope="scope">
-					<el-button type="text" @click="roleHandle(scope.row.id)">分配角色</el-button>
+					<!-- <el-button type="text" @click="roleHandle(scope.row.id)">分配角色</el-button>
 					<el-divider direction="vertical"></el-divider>
 
 					<el-button type="text" @click="repassHandle(scope.row.id, scope.row.username)">重置密码</el-button>
+					<el-divider direction="vertical"></el-divider> -->
+					<el-button type="text" @click="checkHandle(scope.row.id)">查看</el-button>
 					<el-divider direction="vertical"></el-divider>
-
 					<el-button type="text" @click="editHandle(scope.row.id)">编辑</el-button>
 					<el-divider direction="vertical"></el-divider>
 

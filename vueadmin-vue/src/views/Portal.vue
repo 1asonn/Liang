@@ -7,36 +7,8 @@
   </div>
 
     <div class="svgContainer" v-if="true">
-      <svg viewBox="0 0 400 200">
-        <text x="0" y="50%" class="text"> Welcome to EIMS </text>
-      </svg> 
+      <TextAnimation :text="title"></TextAnimation>
     </div>  
-        <!-- <el-image style="width: auto; height: 200px;" :src="require('@/assets/jinan.jpg')"></el-image>
-        <p>LOVE FROM L1ANG</p>
-        <p>关注暨南大学公众号 回复【xxx】获取账户密码</p> -->
-
-    <!-- <el-col :span="1" v-if=false>
-        <el-divider direction="vertical"></el-divider>
-    </el-col> -->
-
-    <!-- <el-col :xl="6" :lg="7" v-if=false>
-        <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="100px">
-            <el-form-item label="用户名" prop="username" style="width: 380px;">
-                <el-input v-model="loginForm.username"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="password" style="width: 380px;">
-                <el-input v-model="loginForm.password"></el-input>
-            </el-form-item>
-            <el-form-item label="验证码" prop="code" style="width: 380px;">
-                <el-input v-model="loginForm.code" style="width: 172px; float: left;"></el-input>
-                <el-image  :src="captchaImg" class="captchaImg"></el-image>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="submitForm('loginForm')">立即登录</el-button>
-                <el-button @click="resetForm('loginForm')">重置</el-button>
-            </el-form-item>
-        </el-form>
-    </el-col> -->
 </div>
 </template>
 
@@ -44,14 +16,17 @@
 <script>
   import request from 'axios'
   import ParticleSystem from "@/components/ParticleSystem.vue";
-import { RouterLink } from 'vue-router';
-import router from '@/router';
+  import { RouterLink } from 'vue-router';
+  import router from '@/router';
+  import TextAnimation from '@/components/TextAnimation.vue'
   export default {
     components: {
-      ParticleSystem
+      ParticleSystem,
+      TextAnimation
     },
     data() {
       return {
+        title:"Welcome to EIMS",
         loginForm: {
           username: '',
           password: ''
@@ -183,6 +158,7 @@ import router from '@/router';
 
     .svgContainer{
       position: absolute;
+      top: 25%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -205,47 +181,5 @@ import router from '@/router';
       margin-left:8px;
       border-radius:4px;
     }
-
-    svg {
-    width: 700px;
-    height: 300px;
-    margin: auto;
-    }
-
-    svg text {
-      font-family: "Bangers", cursive;
-      text-transform: uppercase;
-      animation: stroke 5s forwards alternate infinite;
-      letter-spacing: 5px;
-      font-size: 60px;
-    }
-    
-  @keyframes stroke {
-    0% {
-        fill: rgba(72, 138, 20, 0);
-        stroke: rgb(136, 154, 183);
-        stroke-dashoffset: 25%;
-        stroke-dasharray: 0 50%;
-        stroke-width: 0.2;
-    }
-    50% {
-        fill: rgba(72, 138, 20, 0);
-        stroke: rgba(136, 154, 183);
-        stroke-width: 0.5;
-    }
-    70% {
-        fill: rgba(72, 138, 20, 0);
-        stroke: rgb(136, 154, 183);
-        stroke-width: 1;
-    }
-    90%,
-    100% {
-        fill: rgb(202, 216, 230);
-        stroke: rgba(54, 95, 160, 0);
-        stroke-dashoffset: -25%;
-        stroke-dasharray: 50% 0;
-        stroke-width: 0;
-    }
-  }
 
 </style>

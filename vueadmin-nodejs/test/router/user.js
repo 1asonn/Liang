@@ -30,7 +30,7 @@ router.post('/login',async (req,res) => {
     if(!model){
         return res.send({msg:"用户不存在,请注册!"})
     }
-
+    
     //比较用户输入的密码与数据库中的密码
     const passwordValid = bcrypt.compareSync(password,model.dataValues.password)
     //密码校验不通过

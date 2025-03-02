@@ -16,8 +16,8 @@
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x000000);
         scene.fog = new THREE.FogExp2(328972, 5e-4)
+
         // 创建相机
-        
         const camera = new THREE.PerspectiveCamera(
           80,
           window.innerWidth / window.innerHeight,

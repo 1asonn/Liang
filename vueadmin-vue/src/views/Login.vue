@@ -2,12 +2,13 @@
     <section id="login-form" class="main">
         <div class="formContainer">
             <h1>Welcome</h1>
+            <form class="login-form" @submit.prevent="Login">
             <div class="input-wrap i1">
-                <input v-model="loginForm.username" type="text" placeholder="请输入您的邮箱~" spellcheck="false" required>
+                <input id="usernameInput" v-model="loginForm.username" type="email" placeholder="请输入您的邮箱~" spellcheck="false" autocomplete=“off” required>
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class="input-wrap i2">
-                <input v-model="loginForm.password" type="password" placeholder="请输入密码~" spellcheck="false" required>
+                <input id="passwordInput" v-model="loginForm.password" type="password" placeholder="请输入密码~" spellcheck="false" required>
                 <i class="fa-solid fa-lock"></i>
             </div>
             <div class="rem">
@@ -18,16 +19,11 @@
                 <a>Forgot password?</a>
             </div>
 
-            <button @click="Login">Login</button>
+            <button type="submit">Login</button>
 
             <p class="reg">Dont't have an account? <a>Register</a></p>
-
+            </form>
         </div>
-
-        <div class="demo">
-            {{$t("帮助")}}
-        </div>
-        <button @click="changeLang">changeLang</button>
     </section>
 </template>
 
@@ -46,9 +42,15 @@
             this.$i18n.locale = 'zh-TW';
             console.log("i18n",this.$i18n)}
             ,
-
+        mounted(){
+        },
         methods:{
-            Login(){
+            Login(event){
+            event.preventDefault()
+
+            if(!document.getElementById("usernameInput").validity.valid || !this.loginForm.password){
+                return 
+            }
             this.$axios.post('http://localhost:4000/user/login',this.loginForm,{
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -61,13 +63,13 @@
             }).catch(
             (error) => {
                 Element.Message.error(error)
-              console.log("error",error)})
+            })
             },
             changeLang(){
                 const res = require('../i18n/lang/zh-TW.js')
                 console.log("========",res)
             }   
-        }
+        },
         
     }
 
@@ -110,7 +112,13 @@
         animation: reload 0.5s ease-out forwards;
         animation-delay: 0.2s;
     }
-
+    .login-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
     .input-wrap{
         display: flex;
         align-items: center;
